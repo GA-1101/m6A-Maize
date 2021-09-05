@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="./img/RNA.png" type="image/icon type">
+    <title>m6A-Maize Server</title>
+    <meta name="author" content="GA-1101">
+    <meta content="Maize m6A mutate sites analysed by Weakly supervised model.">
+    
+    <link rel="stylesheet" href="./file/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="./file/337bootstrap.min.css">
+
+    <link rel="stylesheet" href="./file/new_ui/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script src="./file/new_ui/jquery-3.5.1.min.js"></script>
+    <script src="./file/new_ui/337bootstrap.min.js"></script>
+    <script src="./file/new_ui/index.js"></script>
+    <script src="./file/new_ui/jquery-ui.js"></script>
+    <link rel="stylesheet" href="./file/new_ui/jquery-ui.css">
+
+</head>
+
+<style>
+    table, th, td {
+        border: 1px solid #ddd;
+    }
+
+    .container-fluid {
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+        position: fixed;
+        right: 20px;
+    }
+</style>
+
+<body style="background-color:#EEEEEE">
+    <!-- Navbar 开始-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" style="border-bottom-color:#f2ce82; box-shadow:1px 1px 0px 1px #303C51; background-color:#2D3C53">
+        
+        <div class="container">
+          <!-- Left -->
+            <div class="navbar-header">
+                <a class="navbar-brand" style="font-size:32px; color:#FFFFFF"><b>m6A-Maize</b></a>
+            </div>
+            <!-- Right -->
+            <div class="navbar-collapse" style="font-size:20px">
+                <ul id ="nav-txt"class="nav navbar-nav navbar-right">
+                  <li><a href="index.html" style="color:#EEEEEE"><i class="fa fa-home" aria-hidden="true"></i><b> Home</b></a></li>
+                  <li><a href="sequence.html" style="color:#EEEEEE"><i class="fa fa-server" aria-hidden="true"></i><b> Predictor</b></a></li>
+                  <li><a href="gain_unlabel.html" style="color:#EEEEEE"><i class="fa fa-database" aria-hidden="true"></i><b> Database</b></a></li>
+                  <li><a href="help.html" style="color:#EEEEEE"><i class="fa fa-question-circle" aria-hidden="true"></i><b> Help</b></a></li>
+                  <li><a href="contact.html" style="color:#EEEEEE"><i class="fa fa-comment" aria-hidden="true"></i><b> Contact</b></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar 结束 -->
+
+        <div class="container" style="margin-top:90px">
+          <!-- web server-->
+          <div class="thumbnail" style="padding-left:20px;padding-right:20px;padding-top:18px;color:black; border-left-color:#000557;border-left-width:5px">
+            
+            <br>
+            <p style="font-size:17px"><b>Sequence Predictor</b>: a web server for predicting the m6A modification possibility in Maize using Weakly Supervised Model.
+            </p>
+            <p style="font-size:17px"><b>SNP Predictor</b>: a web server for predicting the SNP with m6A modification and obtain the report of related traits information for download.
+            </p>
+            <hr>
+
+            <br>
+                <b>Sequence</b>
+                |
+                <a href="snp.html">SNP</a>
+                <br>
+            <br>
+
+            <div class="col-md-12" style="background-color:#EEEEEE; color:#183F80; padding-left:2px">
+              <label style="font-size:16px; margin-top:12px" for="">The following options are available:</label>
+              <ul>
+                <li class="text-justify">Input Data: Up to 10 DNA (or RNA) sequnces in standard FASTA format. (Minimum length: 51-bp)</li>
+                <li class="text-justify">Download all data by <a href="./download/m6A-Maize Peakdata.zip" download="m6A-Maize Peakdata.zip">clicking here</a>.</li>
+              </ul>
+            </div>
+            
+            <form action="get.php" method="post" id="form" enctype="multipart/form-data">
+              <div class="row">
+
+              <!-- Sequence -->
+                <!-- text -->
+                <div class="col-md-6" style="margin-top:20px">
+                  <label style="font-size:18px">Input Data (Standard FASTA):</label>
+                  <textarea id='text' name="text" style="width:100%" rows="9" class="comments"></textarea>
+                  <span style="color:#acb2be">*Note: Up to 10 DNA (or RNA) sequences of at least 51nt long each.</span>
+                </div>
+                
+                
+                <div class="col-md-6" style="margin-top:20px">
+                  <label style="margin-top:16px;font-size:15px"> <i class="fa fa-file" aria-hidden="true"></i> Upoad FASTA File：</label>
+                  <div class="progress" style="margin-top:10px;height: 20px;width:100%">
+                    <div  class="progress-bar progress-bar-warning progress-bar-striped"  role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%;min-width: 2em;">
+                      0%
+                    </div>
+                  </div>
+                  <input  name="file" type="file" id="file" style="display:none;" />
+                  <br>
+                  <button id="upfile" style="background-color:#303C51;border:0px" type="button" class="btn btn-primary" ><i class="fa fa-upload" aria-hidden="true"></i>&nbsp&nbsp+ File&nbsp&nbsp&nbsp</button>
+                  <button  style="background-color:#303C51;border:0px" type="button" class="btn btn-primary" id="example1" data-toggle="tooltip" data-placement="bottom" title="Estimated running time for example file: 15 minutes" >Example</button>
+                  <br><br><br>
+                  
+                  <button  style="background-color:#964B29;border:0px" type="button" class="btn  btn-success " id="clear">
+                    &nbsp&nbspClear&nbsp&nbsp
+                  </button>
+                  
+                  <input style="float:right;background-color:#303C51;border:0px; float:right" type="button" onclick="login()" class="btn btn-primary" value="Submit"><br>
+                  <span style="color:#acb2be;margin-top:5px; float:right">
+                    * The web server is currently not supporting submitting job through iOS. Chromium or Firefox browser is recommended. Please allow pop-up windows for Safari browser.
+                  </span>
+                </div>
+                <div class="col-md-12" style="margin-top:30px" />
+              </div>
+            </form>
+          </div>
+        </div>
+      <!-- footer-->
+      <nav class="navbar navbar-inverse navbar-bottom" style="background-color:#EEEEEE; border:0px">
+        <div class="container">
+            <div style="text-align:center; font-family:Times; font-size:16px; margin-top:20px ">
+                <strong>m6A-Maize &copy; The Meng Lab (2021). All Rights Reserved</strong>
+            </div>
+        </div>
+      </nav>
+
+    </body>
+</html>
+
+
+<script language='javascript' type="text/javascript">
+
+  $('#example1').click(function(){
+    $('#text').val('>gi|47104006|gb|BV154549.1| PZA02409-74958-Mo17 Zea mays Mo17 Zea mays STS genomic, sequence tagged site\nGGCATCCGTTACCGCCCATCACCCTCGGAGCCTCCATCAACGAGCACCAAGAAAGGGAAGGGAGCTGCCTCAGGCCCTACGCAGTTCGTCCACACGCTCAACGCTACAGCAGTGGCGGTGCCTCGTCTGATAGTTTGCATTCTAGAGAATTTTCAGCAGGGCGATGGGTCGATTGTGGTTCCAGAGCCACTAAGACCCTATATGGGTGGACTAGAGTTGCTCTCCCCAAAATTCAAGTGACCCTCTACGGTCACCCGCTGTTGTGCTTGTGTGGACTTAGAACTGTCTGGCTGAATACAAGTTAAAG\n>XM_020544720.2:1-136 PREDICTED: Zea mays uncharacterized LOC103644366 (LOC103644366), transcript variant X2, mRNA\nATATGCCATGGATAATGCACGCGGGAACGGAACAAAGACACGCGGCGTGCGGGGCCTCGCTCCTCTGGTCTTCCCTCCAGCCCTCGACGGTGGTCATGGCCGCCGCCGCCGCCACTTTCGGCTTCCTCCATCCTCC\n>XM_008662387.3:2583-2708 PREDICTED: Zea mays BICD family-like cargo adapter 2 (LOC103639640), transcript variant X1, mRNA\nTCGCTGCTATTGATGTGTCTTGTGTTGGTAGACTAAAGGATTTAAGAGCCATGTGTACAAAATTCAGTTTACAAGCAAAGATCAAAGGTGGATGGATGTTTGATATGCATACGAAGTCTTCCTTTT\n>XM_020544720.2:531-694 PREDICTED: Zea mays uncharacterized LOC103644366 (LOC103644366), transcript variant X2, mRNA\nATGGGGAGGCTCGGTTTTAGGAGGAAGGTGTATCTCATGGGACGGAGCAAGCCTGACCACGGCGTGGTGCCGCTCCTCGAGAGCTTGGGAATGCGTCTCTCCTCGGCCAAACTCATCGCGCCTTACGTCGCGGCTGCGGGCCTTACTGTGCTGATTGATAGGGT');
+  });
+
+  $("#file").change(function () {
+    var fileExtension = ['fasta'];
+    if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+      alert("Please upload your file as file.fasta");
+    }else{
+      if (this.files[0].size > 8388608)
+      {
+         //show an alert to the user
+         alert("Allowed file size exceeded. (Max: 8 MB)")
+      }else{
+        var html="<i class='fa fa-files-o' aria-hidden='true'></i>  " + $("#file").val();
+        $(".progress-bar").width("100%");
+        $(".progress-bar").html("100%");
+      }
+    }
+  });
+
+
+  $("#upfile").click(function(){
+    if(!$('#text').val()){
+      $("#file").click();
+      $("#text").prop('disabled',true);
+      $("#example1").attr({"disabled":"disabled"});
+    }else{
+      $("#upfile").attr({"disabled":"disabled"});
+    }
+    return false;
+  });
+
+
+  $("#clear").click(function(){
+    $('#text').val('');
+    $("#file").val('');
+    $(".progress-bar").width("0%");
+    $(".progress-bar").html("0%");
+    $("#upfile").removeAttr("disabled");
+    $("#example1").removeAttr("disabled");
+    $("#text").prop('disabled',false);
+  });
+
+  function login(){
+    if($("#text").val()||$("#file").val()){
+      if($("#text").val()){
+        $.ajax({
+          url:'get.php',
+          data:$('#form').serialize(),
+          type:'POST',
+          async:false,
+          success:function(data){
+            window.open("http:upload.php?ID="+data);
+          },
+          error:function (err){
+            alert('err');
+          }
+        });
+      }
+      if($("#file").val()){
+
+        var formData = new FormData();
+        formData.append('file', $('#file')[0].files[0]);
+
+        $.ajax({
+          url:'get.php',
+          data:formData,
+          type:'POST',
+          async:false,
+          processData: false,
+          contentType: false,
+          success:function(data){
+            window.open("http:upload.php?ID="+data);
+          },
+          error:function (err){
+            alert('err');
+          }
+        });
+      }
+    }else{
+      alert('Please input or upload RNA sequences as example shows');
+    }
+  };
+  
+</script>
