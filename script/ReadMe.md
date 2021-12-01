@@ -3,7 +3,7 @@
 ### title: main script for maize m6A_WeakRM prediction
 ### Meng lab
 
-1. Run the main file: web_script.py in environment python 3.7.2
+1. Run the main file: web_script.py in environment python 3.7.2, if you want to run it without m6A-Maize website.
 #### NOTICE!
 #### version of R not lower than 3.6
 
