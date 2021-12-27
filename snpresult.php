@@ -117,7 +117,6 @@ $ID = $_GET['ID'];
     <script src="./js/jquery.csv.min.js"></script>
     <script src="./file/jquery.dataTables.min.js"></script>
     <script src="./file/dataTables.bootstrap4.min.js"></script>
-    <script src="./js/csv_to_html_table.js"></script>
 
     <script>
         var id = "<?php echo $ID?>";
@@ -129,7 +128,6 @@ $ID = $_GET['ID'];
         console.log(csvPath2);
         console.log(csvPath3);
     </script>
-
 
 <?php
 // 判断文件是否存在
@@ -157,5 +155,4 @@ if(file_exists("/var/www/html/maize/job2/".$ID."/download/Results/high-confidenc
     </nav>
 
 </body>
-
 </html>
