@@ -106,5 +106,5 @@ json_str = json.dumps(fileStatusjson)
 with open(fileStatusname, 'w') as json_file:
     json_file.write(json_str)
 
-os.system("cd /var/www/html/maize/job/"+jobID+"/download/")
+os.chdir("/var/www/html/maize/job/"+jobID+"/download/")
 os.system("rm input_seq.rds")
