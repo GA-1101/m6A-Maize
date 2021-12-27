@@ -206,7 +206,7 @@ json_str = json.dumps(fileStatusjson)
 with open(fileStatusname, 'w') as json_file:
     json_file.write(json_str)
 
-os.system("cd /var/www/html/maize/job2/"+jobID+"/download/")
+os.chdir("/var/www/html/maize/job2/"+jobID+"/download/")
 os.system("rm *_tmp.rds")
 os.system("rm *_tmp.fasta")
 os.system("rm traits_unlabel_*.csv")
