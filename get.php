@@ -45,10 +45,8 @@ fclose($fp);
 //$out=" > /var/www/html/maize/job/".$jobID."/".$jobID.".out";
 
 //Linux bash
-//system("pip3 install sklearn >pyfile.log 2>&1  &");
 //system('nohup /usr/bin/Rscript /var/www/html/maize/script/full_script_web.R' . ' ' .$jobID. " >Rfile.log 2>&1  &");
 system('nohup /usr/bin/python3 /var/www/html/maize/script/web_script.py' . ' ' .$jobID. " >file.log 2>&1  &");
-//system('nohup /home/zhanmin.liang/miniconda3/envs/py37/bin/python /var/www/html/maize/script/web_script.py' . ' ' .$jobID. " >pyfile.log 2>&1  &");
 
 //debug on Windows
 //system("D:\phpstudy_pro\WWW\maize\R-4.0.3\bin\R.exe --vanilla <D:\phpstudy_pro\WWW\maize\upload.R",$out);
