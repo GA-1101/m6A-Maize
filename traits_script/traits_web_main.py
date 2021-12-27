@@ -17,10 +17,8 @@ import rpy2.robjects as ro
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 jobID = sys.argv[1]
-
 rscript=('/usr/bin/Rscript /var/www/html/maize/traits_script/traits_web.R'+' '+jobID)
 p=os.system(rscript)
-
 np.random.seed(323)
 
 # readRDS = ro.r['readRDS']
