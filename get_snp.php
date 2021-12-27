@@ -45,9 +45,6 @@ fclose($fp);
 //$out=" > /var/www/html/maize/job/".$jobID."/".$jobID.".out";
 
 //Linux bash
-//system("/usr/bin/R CMD INSTALL /home/zhanmin.liang/maize_web_script/index/BSgenome.Zmays.Ensemble.zmv4_1.0.tar.gz >Rfile.log 2>&1  &");
-//system("pip3 install pandas >pyfile.log 2>&1  &");
-//system('nohup /usr/bin/Rscript /var/www/html/maize/traits_script/test.R' . ' ' .$jobID. " >Rfile.log 2>&1  &");
 system('nohup /usr/bin/python3 /var/www/html/maize/traits_script/traits_web_main.py' . ' ' .$jobID. " >file2.log 2>&1  &");
 
 //debug on Windows
