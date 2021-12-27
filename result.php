@@ -144,18 +144,6 @@ $arrlength = count($resultsArray) - 1; //减去output.txt文件多的一空行
     <script src="./file/jquery.dataTables.min.js"></script>
     <script src="./file/dataTables.bootstrap4.min.js"></script>
 
-<?php
-// 判断m6A存在性
-/*
-if($resultsData < 0.5){
-    echo "<script>$('i.fa-check-circle').remove();</script>";
-} else {
-    echo "<script>$('i.fa-times-circle').remove();</script>";
-}
-fclose($resultsFile);
-*/
-?>
-
     <!-- footer-->
     <nav class="navbar navbar-inverse navbar-bottom" style="background-color:#EEEEEE; border:0px">
         <div class="container">
@@ -166,7 +154,4 @@ fclose($resultsFile);
     </nav>
 
 </body>
-<!--The MIT License (MIT)
-Copyright (c) 2018 Derek Eder
--->
 </html>
