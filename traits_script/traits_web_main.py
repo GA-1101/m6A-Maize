@@ -209,6 +209,4 @@ with open(fileStatusname, 'w') as json_file:
 os.chdir("/var/www/html/maize/job2/"+jobID+"/download/")
 os.system("rm *_tmp.rds")
 os.system("rm *_tmp.fasta")
-os.system("rm traits_unlabel_*.csv")
-os.system("rm traits_pos_loss.csv")
 os.system("rm traits_*_label.npy")
